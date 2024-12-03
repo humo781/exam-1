@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <title>Student List</title>
+</head>
+<style>
+        .form-box {
+            border: 2px solid Black; /* Chegara ko'k rangda */
+            border-radius: 10px; /* To'rtburchakni yumaloqroq qilish */
+            padding: 20px; /* Ichki bo'shliq */
+            background-color: #f8f9fa; /* Orqa fonni engil kulrang qilish */
+            max-width: 400px; /* Kenglikni cheklash */
+            margin: auto; /* Markazga joylash */
+        }
+        .rounded-input {
+                border-radius: 10px;
+                border: 2px solid Black; /* Chegara bilan ko'rinish uchun */
+                padding: 5px; /* Ichki bo'shliq */
+        }
+        .border-with-text::before {
+                content: "Create new Taxi"; /* Yozuv */
+                color: SlateBlue;
+                position: absolute;
+                top: 14%;
+                left: 43%;
+                transform: translate(-50%, -50%); /* Markazlashdirish */
+                background-color: #f8f9fa; /* Yozuv fonini oq qilish */
+                padding: 0 10px; /* Yozuvni chizig'dan ajratish */
+                z-index: 1; /* Yozuvni boshqa kontentdan ustun qilish */
+            }
+        table {
+            width: 50%; /* Jadvalning kengligi */
+            margin: 0 auto;
+            border-radius: 20px;
+
+        }
+
+        table, th, td {
+              border: 2px solid Black;
+              border-radius: 10px;
+              border-collapse: separate;
+              background-color: #f8f9fa;
+        }
+
+        th, td {
+            padding: 2px; /* Yozuvlar orasida bo‘shliq */
+            text-align: center; /* Yozuvni chapga joylashtirish */
+            border-style: outset;
+        }
+    </style>
+<body style="background-color:SlateBlue">
+<h1 class="text-center mt-4" style="background-color:Tomato;"><strong>Taxi List</strong></h1>
+<br>
+<form method="post">
+    {% csrf_token %}
+    <div class="form-box">
+        <div class="mb-3 border-with-text">
+            <span style="color:SlateBlue">Taxi Name:</span> <input type="text" name="taxi_name" class="rounded-input">
+        </div>
+        <div class="mb-3">
+            <span style="color:SlateBlue">Licence Plate:</span> <input type="text" name="licence_plate" class="rounded-input">
+        </div>
+        <div class="mb-3">
+            <span style="color:SlateBlue">Driver Name:</span> <input type="text" name="driver_name" class="rounded-input">
+        </div>
+        <div class="mb-3">
+            <span style="color:SlateBlue">Passenger Capacity:</span> <input type="number" name="passenger_capacity" class="rounded-input">
+        </div>
+        <div class="mb-3">
+            <span style="color:SlateBlue">Car Model:</span> <input type="text" name="car_model" class="rounded-input">
+        </div>
+        <div class="mb-3">
+            <span style="color:SlateBlue">Status:</span> <input type="text" name="status" class="rounded-input">
+        </div>
+        <button type="submit" class="btn btn-primary w-20">Create Taxi</button>
+        <br><a href="../">Back</a>
+    </div>
+</form>
+<br>
+<p style="text-align: center; margin:0"><strong>Taxi List</strong></p>
+<div>
+    <table>
+        <tr>
+            <th>Taxi Name</th>
+            <th>Licence Plate</th>
+            <th>Driver Name</th>
+            <th>Passenger Capacity</th>
+            <th>Car Model</th>
+            <th>Status</th>
+        </tr>
+        {% for taxi in taxis %}
+            <tr>
+                <td>{{ taxi.taxi_name }}</td>
+                <td>{{ taxi.licence_plate }}</td>
+                <td>{{ taxi.driver_name }}$</td>
+                <td>{{ taxi.passenger_capacity }}</td>
+                <td>{{ taxi.car_model }}</td>
+                <td>{{ taxi.status }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <title>Student List</title>
+</head>
+<style>
+        .form-box {
+            border: 2px solid Black; /* Chegara ko'k rangda */
+            border-radius: 10px; /* To'rtburchakni yumaloqroq qilish */
+            padding: 20px; /* Ichki bo'shliq */
+            background-color: #f8f9fa; /* Orqa fonni engil kulrang qilish */
+            max-width: 400px; /* Kenglikni cheklash */
+            margin: auto; /* Markazga joylash */
+        }
+        .rounded-input {
+                border-radius: 10px;
+                border: 2px solid Black; /* Chegara bilan ko'rinish uchun */
+                padding: 5px; /* Ichki bo'shliq */
+        }
+        .border-with-text::before {
+                content: "Create new Meal"; /* Yozuv */
+                color: SlateBlue;
+                position: absolute;
+                top: 14%;
+                left: 43%;
+                transform: translate(-50%, -50%); /* Markazlashdirish */
+                background-color: #f8f9fa; /* Yozuv fonini oq qilish */
+                padding: 0 10px; /* Yozuvni chizig'dan ajratish */
+                z-index: 1; /* Yozuvni boshqa kontentdan ustun qilish */
+            }
+        table {
+            width: 50%; /* Jadvalning kengligi */
+            margin: 0 auto;
+            border-radius: 20px;
+
+        }
+
+        table, th, td {
+              border: 2px solid #93deff;
+              border-radius: 10px;
+              border-collapse: separate;
+              background-color: #f8f9fa;
+        }
+
+        th, td {
+            padding: 2px; /* Yozuvlar orasida bo‘shliq */
+            text-align: center; /* Yozuvni chapga joylashtirish */
+            border-style: outset;
+        }
+    </style>
+<body style="background-color:SlateBlue">
+<h1 class="text-center mt-4" style="background-color:Tomato;"><strong>Meal List</strong></h1>
+<br>
+<form method="post">
+    {% csrf_token %}
+    <div class="form-box">
+        <div class="mb-3 border-with-text">
+            <span style="color:SlateBlue">Meal Name:</span> <input type="text" name="meal_name" class="rounded-input">
+        </div>
+        <div class="mb-3">
+            <span style="color:SlateBlue">Ingredients:</span> <textarea name="ingredients" type="text" id="" cols="35" rows="2" class="rounded-input">
+            </textarea>
+        </div>
+        <div class="mb-3">
+            <span style="color:SlateBlue">Price:</span> <input type="number" name="price" class="rounded-input">
+        </div>
+        <div class="mb-3">
+            <span style="color:SlateBlue">Sort:</span> <input type="text" name="sort" class="rounded-input">
+        </div>
+        <div class="mb-3">
+            <span style="color:SlateBlue">Cuisine:</span> <input type="text" name="cuisine" class="rounded-input">
+        </div>
+        <button type="submit" class="btn btn-primary w-20">Create Meal</button>
+        <br><a href="../">Back</a>
+    </div>
+</form>
+<br>
+<p style="text-align: center; margin:0"><strong>Meal List</strong></p>
+<div>
+    <table>
+        <tr>
+            <th>Meal Name</th>
+            <th>Ingredients</th>
+            <th>Price</th>
+            <th>Sort</th>
+            <th>Cuisine</th>
+        </tr>
+        {% for meal in meals %}
+            <tr>
+                <td>{{ meal.meal_name }}</td>
+                <td>{{ meal.ingredients }}</td>
+                <td>{{ meal.price }}$</td>
+                <td>{{ meal.sort }}</td>
+                <td>{{ meal.cuisine }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>
+</body>
+</html>

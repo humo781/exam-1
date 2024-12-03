@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Main Page</title>
+</head>
+<style>
+    .div-design {
+        text-align: center
+
+    }
+    a {
+        padding: 0px;
+        background-color: #f8f9fa;
+
+    }
+</style>
+<body style="background-color:PowderBlue">
+<h1 class="text-center mt-4 " style="text-align: center; background-color:Tomato;"><strong>List of Management</strong></h1>
+<div class="div-design">
+    <div class="">
+        <a href="{% url 'meals:meal' %}"><strong>Meals Management</strong></a><br>
+    </div>
+    <div class="">
+        <a href="{% url 'taxi:taxi' %}"><strong>Taxi Management</strong></a>
+    </div>
+</div>
+</body>
+</html>
